@@ -8,35 +8,61 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Brand & Professional Colors */
+    --background: 210 20% 98%;
+    --foreground: 224 15% 14%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 224 15% 14%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 224 15% 14%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary: Professional Blue */
+    --primary: 214 84% 56%;
+    --primary-foreground: 0 0% 100%;
+    --primary-muted: 214 84% 96%;
+    --primary-hover: 214 84% 48%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary: Soft Blue-Gray */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 13% 26%;
+    --secondary-hover: 220 14% 90%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Success: Trust Green */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --success-muted: 142 76% 96%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Warning: Attention Orange */
+    --warning: 25 95% 53%;
+    --warning-foreground: 0 0% 100%;
+    --warning-muted: 25 95% 96%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Muted & Neutral */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 13% 46%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 220 13% 26%;
 
-    --radius: 0.5rem;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --ring: 214 84% 56%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+
+    /* Design System Extensions */
+    --radius: 0.75rem;
+    --shadow-soft: 0 2px 8px -2px hsl(var(--foreground) / 0.1);
+    --shadow-medium: 0 4px 16px -4px hsl(var(--foreground) / 0.15);
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-hover)));
+    --gradient-success: linear-gradient(135deg, hsl(var(--success)), hsl(142 76% 28%));
+    
+    /* Animation Variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +127,40 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Zybill Component Styles */
+  .metric-card {
+    @apply bg-card rounded-xl border shadow-soft p-6 transition-all hover:shadow-medium;
+  }
+  
+  .usage-progress-bg {
+    @apply bg-secondary/50 rounded-full overflow-hidden;
+  }
+  
+  .usage-progress-fill {
+    @apply bg-gradient-to-r from-primary to-success rounded-full transition-all duration-500 ease-out;
+  }
+  
+  .billing-card {
+    @apply bg-card border border-border rounded-xl p-6 shadow-soft hover:shadow-medium transition-all;
+  }
+  
+  .invoice-row {
+    @apply border-b border-border last:border-0 py-4 hover:bg-muted/30 transition-colors;
+  }
+  
+  .status-badge-active {
+    @apply bg-success-muted text-success border border-success/20 px-3 py-1 rounded-full text-sm font-medium;
+  }
+  
+  .status-badge-trial {
+    @apply bg-primary-muted text-primary border border-primary/20 px-3 py-1 rounded-full text-sm font-medium;
+  }
+  
+  .status-badge-overdue {
+    @apply bg-warning-muted text-warning border border-warning/20 px-3 py-1 rounded-full text-sm font-medium;
   }
 }
